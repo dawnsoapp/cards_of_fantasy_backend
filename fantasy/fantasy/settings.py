@@ -28,9 +28,9 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-h+)nvve7u=ty_uig+c!_91drm11py4u%)igf)*03^74ljj6eir'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,20 +76,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fantasy.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'cards_of_fantasy',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': "127.0.0.1",
-#         "PORT": "5432",
-#     }
-# }
-
 
 #Render PostgresSQL database (Live)
 import dj_database_url
@@ -99,8 +85,6 @@ DATABASES = {
     'default': dj_database_url.parse(env('DATABASE_URL'))
 
 }
-
-
 
 
 # Password validation
