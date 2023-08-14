@@ -5,3 +5,6 @@ from core.models import Question, Score
 # Create your views here.
 # get_all_questions(["GET"]):
 #     pass
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the core index.")
