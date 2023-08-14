@@ -21,4 +21,9 @@ class Score(models.Model):
     score_name = models.CharField(max_length=12)
     score_num = models.IntegerField(default=0)
     score_time = models.TimeField(default=0)
-    # def to_dict(self):
+    def to_dict(self):
+        return {
+            "score_name": self.score_name,
+            "score_num": self.score_num,
+            "score_time": self.score_time
+        }
