@@ -1,21 +1,27 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+import json
+from django.http import JsonResponse, HttpResponse
 from core.models import Question, Score
-from rest_framework.views import APIView
-from rest_framework.parsers import JSONParser
 
 # Create your views here.
 
 #CREATE
 def post_question(request):
     if request.method == "POST":
-        question_object = Question.objects.all()
-        question = Question.to_dict(question_object)
-        return JsonResponse(question)
+        response_body = (json.loads(request.body))
+        question = Question(user=response_body["user"], message=response_body["message"])
+        question.save()
+        question_object = question.to_dict()
+        return JsonResponse(question_object, safe=False)
 
 #READ
-def read_questions(request):
-    if request.method == "GET":
+# def read_questions(request):
+    elif request.method == "GET":
         questions = Question.objects.all()
-        question_list = [question.to_dict(questions) for question in questions]
-        return JsonResponse(question_list)
+        question_list = [question.to_dict() for question in questions]
+        return JsonResponse(question_list, safe=False)
+    
+
+    # response = HttpResponse()
+    # response['allow'] = ','.join(['get', 'post', 'put', 'delete', 'options'])
+    # return response
